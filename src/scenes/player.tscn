@@ -1,3 +1,18 @@
-[gd_scene format=3 uid="uid://da71cud5ceror"]
+[gd_scene load_steps=3 format=3 uid="uid://da71cud5ceror"]
 
-[node name="Player" type="Node2D"]
+[ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player.gd" id="1_cusn3"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26beo"]
+
+[node name="Player" type="CharacterBody2D"]
+script = ExtResource("1_cusn3")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_26beo")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+color = Color(0.402663, 0.802392, 0.60177, 1)
+polygon = PackedVector2Array(-9, -9, -9, 8, -5, 13, 0, 15, 5, 13, 9, 8, 9, -9, 5, -13, 0, -15, -5, -13)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
