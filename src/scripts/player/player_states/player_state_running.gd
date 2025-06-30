@@ -1,0 +1,31 @@
+extends PlayerState
+
+const ACCELERATION: float = 200
+
+func enter_state() -> void:
+	print("Entró a RUNNING")
+
+func physics_update(delta: float) -> void:
+	var direction: float = Input.get_axis("left","right")
+
+	if Input.is_action_just_pressed("jump"):
+		state_machine.change_to_state(state_machine.STATES.JUMPING)
+	elif direction == 0: # Ninguna tecla presionada
+		if player.velocity.x == 0:
+			# El personaje no tiene velocidad
+			state_machine.change_to_state(state_machine.STATES.IDLE)
+		elif abs(player.velocity.x) > 0:
+			# Si se está moviendo, reducir velocidad
+			if player.velocity.x > 0:
+				player.velocity.x -= ACCELERATION * delta
+			elif player.velocity.x < 0:
+				player.velocity.x += ACCELERATION * delta
+	else:
+		player.velocity.x += ACCELERATION * direction * delta
+
+	_limit_speed(direction)
+
+func _limit_speed(direction: float) -> void:
+	# Impide que supere el limite de velocidad horizontal al correr
+	if abs(player.velocity.x) > ACCELERATION:
+		player.velocity.x = ACCELERATION * direction

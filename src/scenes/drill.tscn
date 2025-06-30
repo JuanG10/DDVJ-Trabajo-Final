@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://cknc2uwaj8x3l"]
+
+[ext_resource type="Script" uid="uid://bxpkka4nccpei" path="res://src/scripts/drill.gd" id="1_6q86d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chjyl"]
+radius = 8.0
+height = 16.0
+
+[node name="drill" type="Node2D"]
+script = ExtResource("1_6q86d")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+z_index = 1
+color = Color(0.305882, 0.737255, 1, 1)
+polygon = PackedVector2Array(8, -8, 24, 0, 8, 8)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(16, 0)
+shape = SubResource("CapsuleShape2D_chjyl")

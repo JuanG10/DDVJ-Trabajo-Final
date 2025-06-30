@@ -6,7 +6,7 @@
 
 [node name="Game" type="Node"]
 
-[node name="Player" parent="." instance=ExtResource("1_covw0")]
+[node name="player" parent="." instance=ExtResource("1_covw0")]
 position = Vector2(136, 408)
 
 [node name="ground_nodes" type="Node" parent="."]
@@ -32,6 +32,24 @@ position = Vector2(240, 528)
 [node name="basic_rigid_ground7" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
 position = Vector2(272, 528)
 
+[node name="basic_rigid_ground17" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(16, 528)
+
+[node name="basic_rigid_ground18" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(16, 528)
+
+[node name="basic_rigid_ground19" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(48, 528)
+
+[node name="basic_rigid_ground20" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(80, 528)
+
+[node name="basic_rigid_ground21" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(80, 528)
+
+[node name="basic_rigid_ground22" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(112, 528)
+
 [node name="basic_rigid_ground8" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
 position = Vector2(304, 528)
 
@@ -55,6 +73,42 @@ position = Vector2(496, 528)
 
 [node name="basic_rigid_ground15" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
 position = Vector2(496, 528)
+
+[node name="basic_rigid_ground16" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(528, 528)
+
+[node name="basic_rigid_ground23" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(560, 528)
+
+[node name="basic_rigid_ground24" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(560, 528)
+
+[node name="basic_rigid_ground25" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(592, 528)
+
+[node name="basic_rigid_ground26" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(624, 528)
+
+[node name="basic_rigid_ground27" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(624, 528)
+
+[node name="basic_rigid_ground28" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(656, 528)
+
+[node name="basic_rigid_ground29" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(688, 528)
+
+[node name="basic_rigid_ground30" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(688, 528)
+
+[node name="basic_rigid_ground31" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(720, 528)
+
+[node name="basic_rigid_ground32" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(752, 528)
+
+[node name="basic_rigid_ground33" parent="ground_nodes" instance=ExtResource("2_3rtjt")]
+position = Vector2(752, 528)
 
 [node name="basic_bouncy_ground" parent="ground_nodes" instance=ExtResource("3_3rtjt")]
 position = Vector2(336, 528)
