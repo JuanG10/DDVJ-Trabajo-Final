@@ -1,21 +1,26 @@
-[gd_scene load_steps=5 format=3 uid="uid://da71cud5ceror"]
+[gd_scene load_steps=6 format=3 uid="uid://da71cud5ceror"]
 
 [ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player/player.gd" id="1_cusn3"]
+[ext_resource type="Texture2D" uid="uid://bo1ya82iiwh0l" path="res://art/character_layers/Character.png" id="2_l2v1k"]
 [ext_resource type="PackedScene" uid="uid://cknc2uwaj8x3l" path="res://src/scenes/drill.tscn" id="2_v4rts"]
 [ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/character_state_machine.tscn" id="3_hwyk6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26beo"]
+radius = 16.0
+height = 32.0
 
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("player_state_machine")]
 script = ExtResource("1_cusn3")
 player_state_machine = NodePath("player_state_machine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
 shape = SubResource("CapsuleShape2D_26beo")
 
-[node name="Polygon2D" type="Polygon2D" parent="."]
-color = Color(0.402663, 0.802392, 0.60177, 1)
-polygon = PackedVector2Array(-9, -9, -9, 8, -5, 13, 0, 15, 5, 13, 9, 8, 9, -9, 5, -13, 0, -15, -5, -13)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-1.43051e-06, 2.86102e-06)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("2_l2v1k")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)

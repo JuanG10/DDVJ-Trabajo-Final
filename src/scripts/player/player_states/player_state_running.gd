@@ -2,9 +2,6 @@ extends PlayerState
 
 const ACCELERATION: float = 200
 
-func enter_state() -> void:
-	print("Entró a RUNNING")
-
 func physics_update(delta: float) -> void:
 	var direction: float = Input.get_axis("left","right")
 
@@ -15,11 +12,8 @@ func physics_update(delta: float) -> void:
 			# El personaje no tiene velocidad
 			state_machine.change_to_state(state_machine.STATES.IDLE)
 		elif abs(player.velocity.x) > 0:
-			# Si se está moviendo, reducir velocidad
-			if player.velocity.x > 0:
-				player.velocity.x -= ACCELERATION * delta
-			elif player.velocity.x < 0:
-				player.velocity.x += ACCELERATION * delta
+			# Si se está moviendo, frenar en seco
+			player.velocity.x = 0
 	else:
 		player.velocity.x += ACCELERATION * direction * delta
 

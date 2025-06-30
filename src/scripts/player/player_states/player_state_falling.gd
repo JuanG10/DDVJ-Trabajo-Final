@@ -2,12 +2,9 @@ extends PlayerState
 
 const FALLING_SPEED_LIMIT: float = 300
 
-func enter_state() -> void:
-	print("Entró a FALLING")
-
 func physics_update(delta: float) -> void:
 	if player.is_on_floor():
-		if abs(player.velocity.x) > 0:
+		if abs(player.velocity.x) > 0: # Tiene velocidad
 			state_machine.change_to_state(state_machine.STATES.RUNNING)
 		else:
 			state_machine.change_to_state(state_machine.STATES.IDLE)

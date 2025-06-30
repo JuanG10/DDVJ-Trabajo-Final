@@ -1,7 +1,6 @@
 extends PlayerState
 
 func enter_state() -> void:
-	print("Entró a IDLE")
 	state_machine.player.velocity = Vector2() # Jugador quieto
 
 func physics_update(_delta: float) -> void:
