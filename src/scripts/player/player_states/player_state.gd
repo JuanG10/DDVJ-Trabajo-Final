@@ -7,7 +7,7 @@ func initialize_state(new_state_machine: StateMachine) -> void:
 	state_machine = new_state_machine
 	player = state_machine.player
 
-func enter_state() -> void:
+func enter_state(_param: Variant) -> void:
 	pass
 
 func physics_update(_delta: float) -> void:

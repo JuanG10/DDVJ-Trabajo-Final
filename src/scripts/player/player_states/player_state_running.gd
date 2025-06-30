@@ -1,8 +1,9 @@
 extends PlayerState
 
-const ACCELERATION: float = 200
+const ACCELERATION: float = 100
+var jump_velocity: Vector2 # Para rebotar
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	var direction: float = Input.get_axis("left","right")
 
 	if Input.is_action_just_pressed("jump"):
@@ -15,7 +16,7 @@ func physics_update(delta: float) -> void:
 			# Si se está moviendo, frenar en seco
 			player.velocity.x = 0
 	else:
-		player.velocity.x += ACCELERATION * direction * delta
+		player.velocity.x += ACCELERATION * direction
 
 	_limit_speed(direction)
 

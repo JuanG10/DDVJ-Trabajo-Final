@@ -1,25 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4dl6ci5q4gqs"]
-
-[ext_resource type="Script" uid="uid://ia6mrb235bsc" path="res://src/scripts/bouncy_ground.gd" id="1_aishm"]
+[gd_scene load_steps=3 format=3 uid="uid://c4dl6ci5q4gqs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g5ryw"]
 size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aishm"]
-size = Vector2(48, 40)
+size = Vector2(34, 33)
 
 [node name="basic_bouncy_ground" type="StaticBody2D"]
-script = ExtResource("1_aishm")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="bouncy_ground_collision" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_g5ryw")
 
 [node name="Polygon2D" type="Polygon2D" parent="."]
 color = Color(0.203922, 0.556863, 0.227451, 1)
 polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="bouncy_area" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -4)
+[node name="bouncy_area_shape" type="CollisionShape2D" parent="bouncy_area"]
+position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_aishm")

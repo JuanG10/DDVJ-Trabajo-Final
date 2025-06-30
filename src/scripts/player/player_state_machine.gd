@@ -22,6 +22,6 @@ func _ready() -> void:
 	for node in state_nodes.values():
 		node.initialize_state(self)
 
-func change_to_state(new_state: STATES) -> void:
+func change_to_state(new_state: STATES, param: Variant = null) -> void:
 	current_state = state_nodes[new_state]
-	current_state.enter_state()
+	current_state.enter_state(param)
