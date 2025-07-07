@@ -1,12 +1,15 @@
 extends PlayerState
 
 const JUMP_ACCELERATION: float = 600
-const JUMP_HEIGHT_LIMIT: float = -50
+const JUMP_HEIGHT_LIMIT: float = -40
 
 var initial_position: Vector2 # Posicion inicial al comenzar el salto
+var bouncing: bool
 
-func enter_state(new_collision_position) -> void:
+func enter_state(bouncing_from_drilling) -> void:
 	initial_position = player.position
+	if is_instance_valid(bouncing_from_drilling):
+		bouncing = bouncing_from_drilling
 
 func physics_update(delta: float) -> void:
 	if player.is_on_ceiling() or (
@@ -16,4 +19,5 @@ func physics_update(delta: float) -> void:
 	_jump(delta)
 
 func _jump(delta: float) -> void:
-	player.velocity.y -= JUMP_ACCELERATION * delta
+	if not bouncing:
+		player.velocity.y -= JUMP_ACCELERATION * delta

@@ -6,7 +6,9 @@ var jump_velocity: Vector2 # Para rebotar
 func physics_update(_delta: float) -> void:
 	var direction: float = Input.get_axis("left","right")
 
-	if Input.is_action_just_pressed("jump"):
+	if not player.is_on_floor():
+		state_machine.change_to_state(state_machine.STATES.FALLING)
+	elif Input.is_action_just_pressed("jump"):
 		state_machine.change_to_state(state_machine.STATES.JUMPING)
 	elif direction == 0: # Ninguna tecla presionada
 		if player.velocity.x == 0:
