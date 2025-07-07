@@ -1,7 +1,6 @@
 extends PlayerState
 
-const ACCELERATION: float = 100
-var jump_velocity: Vector2 # Para rebotar
+@export var ACCELERATION: float = 100
 
 func physics_update(_delta: float) -> void:
 	var direction: float = Input.get_axis("left","right")

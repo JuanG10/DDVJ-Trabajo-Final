@@ -1,7 +1,7 @@
 extends PlayerState
 
-const JUMP_ACCELERATION: float = 600
-const JUMP_HEIGHT_LIMIT: float = -40
+@export var JUMP_ACCELERATION: float = 600
+@export var JUMP_HEIGHT_LIMIT: float = -40
 
 var initial_position: Vector2 # Posicion inicial al comenzar el salto
 var bouncing: bool

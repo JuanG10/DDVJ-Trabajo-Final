@@ -9,12 +9,15 @@ enum STATES {
 }
 
 @onready var state_nodes := {
+	# Cambiar para inicializar los nodos en el ready con initialize_state
+	# y hacer que cada nodo se instancie a sí mismo
 	STATES.IDLE: $idle,
 	STATES.JUMPING: $jumping,
 	STATES.FALLING: $falling,
 	STATES.RUNNING: $running,
 	STATES.DRILLING: $drilling
 }
+
 @export var player: Player
 @export var initial_state: STATES
 @onready var current_state: PlayerState = state_nodes[initial_state]:

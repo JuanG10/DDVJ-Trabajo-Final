@@ -1,7 +1,7 @@
 extends PlayerState
 
-const FALLING_SPEED_LIMIT: float = 150
-const FLOATING_TIME: float = 0.15
+@export var FALLING_SPEED_LIMIT: float = 150
+@export var FLOATING_TIME: float = 0.15
 var timer : Timer
 
 func enter_state(_param) -> void:
