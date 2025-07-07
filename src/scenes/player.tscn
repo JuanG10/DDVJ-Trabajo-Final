@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player/player.gd" id="1_cusn3"]
 [ext_resource type="Texture2D" uid="uid://bo1ya82iiwh0l" path="res://art/character_layers/Character.png" id="2_l2v1k"]
 [ext_resource type="PackedScene" uid="uid://cknc2uwaj8x3l" path="res://src/scenes/drill.tscn" id="2_v4rts"]
-[ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/character_state_machine.tscn" id="3_hwyk6"]
+[ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/player_state_machine.tscn" id="3_hwyk6"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26beo"]
 radius = 16.0
@@ -29,3 +29,12 @@ zoom = Vector2(3, 3)
 
 [node name="player_state_machine" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hwyk6")]
 player = NodePath("..")
+
+[node name="Debug_label" type="Label" parent="."]
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -17.0
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 171

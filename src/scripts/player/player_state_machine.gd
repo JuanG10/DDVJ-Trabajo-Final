@@ -4,14 +4,16 @@ enum STATES {
 	IDLE,
 	JUMPING,
 	FALLING,
-	RUNNING
+	RUNNING,
+	DRILLING
 }
 
 @onready var state_nodes := {
 	STATES.IDLE: $idle,
 	STATES.JUMPING: $jumping,
 	STATES.FALLING: $falling,
-	STATES.RUNNING: $running
+	STATES.RUNNING: $running,
+	STATES.DRILLING: $drilling
 }
 @export var player: Player
 @export var initial_state: STATES

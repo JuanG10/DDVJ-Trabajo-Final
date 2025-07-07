@@ -31,6 +31,7 @@ animations = [{
 }]
 
 [node name="drill" type="Node2D"]
+z_index = 1
 script = ExtResource("1_6q86d")
 
 [node name="Area2D" type="Area2D" parent="."]
