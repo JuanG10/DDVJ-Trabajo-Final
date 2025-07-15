@@ -3,6 +3,9 @@ extends PlayerState
 var collision_position # Vector2 para este estado
 const BOUNCE_FORCE: float = 50 # Convertir a var en el futuro
 
+func _add_state_to_machine() -> void:
+	state_machine.state_nodes[state_machine.STATES.DRILLING] = self
+
 func enter_state(new_collision_position) -> void:
 	if new_collision_position: # Objeto de colision al comenzar el salto
 		collision_position = new_collision_position

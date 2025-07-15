@@ -1,5 +1,8 @@
 extends PlayerState
 
+func _add_state_to_machine() -> void:
+	state_machine.state_nodes[state_machine.STATES.IDLE] = self
+
 func enter_state(_param) -> void:
 	state_machine.player.velocity = Vector2() # Jugador quieto
 

@@ -7,7 +7,7 @@ var is_collisioning := false
 #var is_rotated := false
 
 func _physics_process(_delta: float) -> void:
-	print(rotation)
+	#print(rotation)
 	look_at(get_global_mouse_position())
 
 	#if Input.is_action_pressed("shift_up") and not is_rotated:

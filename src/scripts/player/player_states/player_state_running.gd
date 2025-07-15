@@ -2,6 +2,9 @@ extends PlayerState
 
 @export var ACCELERATION: float = 100
 
+func _add_state_to_machine() -> void:
+	state_machine.state_nodes[state_machine.STATES.RUNNING] = self
+
 func physics_update(_delta: float) -> void:
 	var direction: float = Input.get_axis("left","right")
 

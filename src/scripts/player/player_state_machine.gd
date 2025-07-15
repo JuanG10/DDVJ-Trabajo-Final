@@ -1,5 +1,7 @@
 class_name StateMachine extends Node
 
+@onready var player: Player = self.owner
+
 enum STATES {
 	IDLE,
 	JUMPING,
@@ -8,24 +10,14 @@ enum STATES {
 	DRILLING
 }
 
-@onready var state_nodes := {
-	# Cambiar para inicializar los nodos en el ready con initialize_state
-	# y hacer que cada nodo se instancie a sí mismo
-	STATES.IDLE: $idle,
-	STATES.JUMPING: $jumping,
-	STATES.FALLING: $falling,
-	STATES.RUNNING: $running,
-	STATES.DRILLING: $drilling
-}
-
-@export var player: Player
-@export var initial_state: STATES
-@onready var current_state: PlayerState = state_nodes[initial_state]:
+var state_nodes: Dictionary[STATES, PlayerState]
+var current_state: PlayerState:
 	get: return current_state
 
 func _ready() -> void:
-	for node in state_nodes.values():
-		node.initialize_state(self)
+	for state: PlayerState in get_children():
+		state.initialize_state(self)
+	current_state = state_nodes[STATES.IDLE]
 
 func change_to_state(new_state: STATES, param: Variant = null) -> void:
 	current_state = state_nodes[new_state]

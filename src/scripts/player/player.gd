@@ -1,6 +1,6 @@
 class_name Player extends CharacterBody2D
 
-@export var player_state_machine : StateMachine
+@onready var player_state_machine : StateMachine = $player_state_machine
 @onready var drill: Drill = $drill
 
 var is_drilling := false # Probar otra implementación

@@ -6,6 +6,9 @@ extends PlayerState
 var initial_position: Vector2 # Posicion inicial al comenzar el salto
 var bouncing: bool
 
+func _add_state_to_machine() -> void:
+	state_machine.state_nodes[state_machine.STATES.JUMPING] = self
+
 func enter_state(bouncing_from_drilling) -> void:
 	initial_position = player.position
 	if is_instance_valid(bouncing_from_drilling):
