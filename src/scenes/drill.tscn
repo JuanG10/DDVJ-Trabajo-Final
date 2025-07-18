@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://cknc2uwaj8x3l"]
+
+[ext_resource type="Script" uid="uid://bxpkka4nccpei" path="res://src/scripts/drill.gd" id="1_6q86d"]
+[ext_resource type="Texture2D" uid="uid://c38jpckixkuls" path="res://art/character_layers/Drill_1.png" id="2_8g5in"]
+[ext_resource type="Texture2D" uid="uid://bahnfomn0uwwb" path="res://art/character_layers/Drill_2.png" id="3_gj6aa"]
+[ext_resource type="Texture2D" uid="uid://dhu1bm2hg1ca6" path="res://art/character_layers/Drill_3.png" id="4_ei5to"]
+[ext_resource type="Texture2D" uid="uid://7u1tjr0r5ok6" path="res://art/character_layers/Drill_4.png" id="5_sho0f"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_chjyl"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxeaj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8g5in")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gj6aa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ei5to")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_sho0f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 16.0
+}]
+
+[node name="drill" type="Node2D"]
+script = ExtResource("1_6q86d")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(24, 0)
+shape = SubResource("CapsuleShape2D_chjyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(9, 9)
+scale = Vector2(0.416667, 0.416667)
+sprite_frames = SubResource("SpriteFrames_rxeaj")
+frame_progress = 0.125116
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_drill_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_drill_area_exited"]

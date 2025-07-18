@@ -1,3 +1,39 @@
-[gd_scene format=3 uid="uid://da71cud5ceror"]
+[gd_scene load_steps=6 format=3 uid="uid://da71cud5ceror"]
 
-[node name="Player" type="Node2D"]
+[ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player/player.gd" id="1_cusn3"]
+[ext_resource type="Texture2D" uid="uid://bo1ya82iiwh0l" path="res://art/character_layers/Character.png" id="2_l2v1k"]
+[ext_resource type="PackedScene" uid="uid://cknc2uwaj8x3l" path="res://src/scenes/drill.tscn" id="2_v4rts"]
+[ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/player_state_machine.tscn" id="3_hwyk6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26beo"]
+radius = 16.0
+height = 32.0
+
+[node name="player" type="CharacterBody2D"]
+script = ExtResource("1_cusn3")
+
+[node name="player_collision" type="CollisionShape2D" parent="."]
+z_index = 1
+shape = SubResource("CapsuleShape2D_26beo")
+
+[node name="player_sprite" type="Sprite2D" parent="."]
+position = Vector2(-1.43051e-06, 2.86102e-06)
+scale = Vector2(0.333333, 0.333333)
+texture = ExtResource("2_l2v1k")
+
+[node name="player_camera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="drill" parent="." instance=ExtResource("2_v4rts")]
+
+[node name="player_state_machine" parent="." instance=ExtResource("3_hwyk6")]
+
+[node name="Debug_label" type="Label" parent="."]
+z_index = 10
+offset_left = -24.0
+offset_top = -40.0
+offset_right = 24.0
+offset_bottom = -17.0
+vertical_alignment = 1
+autowrap_mode = 2
+justification_flags = 171

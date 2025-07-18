@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://cirkfc7pawa1e"]
+
+[ext_resource type="Script" uid="uid://g4mq0q3yioue" path="res://src/scripts/player/player_state_machine.gd" id="1_birjd"]
+[ext_resource type="Script" uid="uid://ctilcjyi4gxih" path="res://src/scripts/player/player_states/player_state_idle.gd" id="2_cl4gv"]
+[ext_resource type="Script" uid="uid://dxrf1m4i0ls7a" path="res://src/scripts/player/player_states/player_state_jumping.gd" id="3_qypkn"]
+[ext_resource type="Script" uid="uid://d4euivc66y5yr" path="res://src/scripts/player/player_states/player_state_falling.gd" id="4_i82lc"]
+[ext_resource type="Script" uid="uid://bbrqtg0hbf68v" path="res://src/scripts/player/player_states/player_state_running.gd" id="5_o4nhl"]
+[ext_resource type="Script" uid="uid://c8ocucfsif6ol" path="res://src/scripts/player/player_states/player_state_drilling.gd" id="6_3jldo"]
+
+[node name="player_state_machine" type="Node"]
+script = ExtResource("1_birjd")
+
+[node name="idle" type="Node" parent="."]
+script = ExtResource("2_cl4gv")
+
+[node name="jumping" type="Node" parent="."]
+script = ExtResource("3_qypkn")
+
+[node name="falling" type="Node" parent="."]
+script = ExtResource("4_i82lc")
+
+[node name="running" type="Node" parent="."]
+script = ExtResource("5_o4nhl")
+
+[node name="drilling" type="Node" parent="."]
+script = ExtResource("6_3jldo")
