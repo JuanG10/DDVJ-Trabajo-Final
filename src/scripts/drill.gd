@@ -2,22 +2,38 @@ class_name Drill extends Node2D
 
 @onready var animation := $AnimatedSprite2D
 var collisioned_area_position: Vector2
+var player_state_machine: StateMachine
 
-var is_collisioning := false
-#var is_rotated := false
+var is_drilling := false #
+var is_collisioning := false # Probar otra implementación
+
+var angle: float
+
+func set_up_drill(new_player_state_machine: StateMachine) -> void:
+	player_state_machine = new_player_state_machine
 
 func _physics_process(_delta: float) -> void:
-	#print(rotation)
-	look_at(get_global_mouse_position())
+	var input_dir = Input.get_vector("left", "right", "up", "down")
 
-	#if Input.is_action_pressed("shift_up") and not is_rotated:
-		#rotate(-90.0)
-		#is_rotated = true
+	if input_dir.length() != 0:
+		angle = input_dir.angle() / (PI/4)
+		angle = wrapi(int(angle), 0, 8)
 
-func start_drill() -> void:
+func handle_drill() -> void:
+	if Input.is_action_just_pressed("drill"): _start_drill()
+	if Input.is_action_just_released("drill"): _stop_drill()
+
+	if is_drilling and is_collisioning:
+		player_state_machine.change_to_state(
+			player_state_machine.STATES.DRILLING,
+			self.collisioned_area_position)
+
+func _start_drill() -> void:
+	is_drilling = true
 	animation.play("default")
 
-func stop_drill() -> void:
+func _stop_drill() -> void:
+	is_drilling = false
 	animation.stop()
 
 func _on_drill_area_entered(area: Area2D) -> void:

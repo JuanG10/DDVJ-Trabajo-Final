@@ -18,5 +18,5 @@ polygon = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
 [node name="bouncy_area" type="Area2D" parent="."]
 
 [node name="bouncy_area_shape" type="CollisionShape2D" parent="bouncy_area"]
-position = Vector2(0, -0.5)
 shape = SubResource("RectangleShape2D_aishm")
+debug_color = Color(0.753479, 0.000874825, 0.825871, 0.42)

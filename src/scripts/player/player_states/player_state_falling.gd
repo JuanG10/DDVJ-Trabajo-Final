@@ -1,6 +1,6 @@
 extends PlayerState
 
-@export var FALLING_SPEED_LIMIT: float = 150
+@export var FALLING_SPEED_LIMIT: float = 180
 @export var FLOATING_TIME: float = 0.15
 var timer : Timer
 
@@ -10,11 +10,11 @@ func _add_state_to_machine() -> void:
 func enter_state(_param) -> void:
 	_config_and_start_timer()
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	_check_landing()
 
 	if timer.is_stopped(): # Caer normal
-		player.velocity += player.get_gravity() * delta
+		player.velocity += player.get_gravity()
 	else: # Mantener velocidad horizontal / flotar un poco
 		player.velocity = Vector2(player.velocity.x, 0)
 
@@ -23,7 +23,7 @@ func physics_update(delta: float) -> void:
 func _config_and_start_timer() -> void:
 	timer = Timer.new()
 	timer.one_shot = true
-	timer.timeout.connect(_on_timer_timeout)
+	#timer.timeout.connect(_on_timer_timeout)
 	add_child(timer)
 	timer.start(FLOATING_TIME)
 
@@ -39,6 +39,3 @@ func _limit_y_speed() -> void:
 	# Impide que supere el limite de velocidad vertical
 	if abs(player.velocity.y) >= FALLING_SPEED_LIMIT:
 		player.velocity.y = FALLING_SPEED_LIMIT
-
-func _on_timer_timeout() -> void:
-	pass

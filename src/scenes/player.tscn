@@ -1,20 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://da71cud5ceror"]
+[gd_scene load_steps=5 format=3 uid="uid://da71cud5ceror"]
 
 [ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player/player.gd" id="1_cusn3"]
 [ext_resource type="Texture2D" uid="uid://bo1ya82iiwh0l" path="res://art/character_layers/Character.png" id="2_l2v1k"]
 [ext_resource type="PackedScene" uid="uid://cknc2uwaj8x3l" path="res://src/scenes/drill.tscn" id="2_v4rts"]
 [ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/player_state_machine.tscn" id="3_hwyk6"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_26beo"]
-radius = 16.0
-height = 32.0
-
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_cusn3")
 
-[node name="player_collision" type="CollisionShape2D" parent="."]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 z_index = 1
-shape = SubResource("CapsuleShape2D_26beo")
+scale = Vector2(1.6, 1.6)
+polygon = PackedVector2Array(7.5, 10, -10, 10, -8.125, -7.5, -6.25, -10, -2.5, -10, 1.25, -10, 3.75, -9.375)
 
 [node name="player_sprite" type="Sprite2D" parent="."]
 position = Vector2(-1.43051e-06, 2.86102e-06)
