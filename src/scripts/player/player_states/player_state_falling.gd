@@ -2,13 +2,13 @@ extends PlayerState
 
 @export var FALLING_SPEED_LIMIT: float = 180
 @export var FLOATING_TIME: float = 0.15
-var timer : Timer
+@onready var timer : Timer = $floating_time_timer
 
 func _add_state_to_machine() -> void:
 	state_machine.state_nodes[state_machine.STATES.FALLING] = self
 
 func enter_state(_param) -> void:
-	_config_and_start_timer()
+	timer.start(FLOATING_TIME)
 
 func physics_update(_delta: float) -> void:
 	_check_landing()
@@ -20,16 +20,8 @@ func physics_update(_delta: float) -> void:
 
 	_limit_y_speed()
 
-func _config_and_start_timer() -> void:
-	timer = Timer.new()
-	timer.one_shot = true
-	#timer.timeout.connect(_on_timer_timeout)
-	add_child(timer)
-	timer.start(FLOATING_TIME)
-
 func _check_landing() -> void:
 	if player.is_on_floor():
-		timer.queue_free()
 		if abs(player.velocity.x) > 0: # Tiene velocidad
 			state_machine.change_to_state(state_machine.STATES.RUNNING)
 		else:

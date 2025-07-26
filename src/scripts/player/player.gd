@@ -3,6 +3,9 @@ class_name Player extends CharacterBody2D
 @onready var player_state_machine : StateMachine = $player_state_machine
 @onready var drill: Drill = $drill
 
+@onready var player_sprite: Sprite2D = $player_sprite:
+	get: return player_sprite
+
 @onready var debug_label: Label = $Debug_label
 
 func _ready() -> void:

@@ -2,17 +2,18 @@ extends PlayerState
 
 @export var JUMP_ACCELERATION: float = -180
 @export var JUMP_HEIGHT_LIMIT: float = -50
+@export var BOUNCE_FORCE: float = 150
 
 var initial_position: Vector2 # Posicion inicial al comenzar el salto
-var bouncing: bool
+var bouncing_from_position: Vector2 # Posicion de objecto del que se rebota
 
 func _add_state_to_machine() -> void:
 	state_machine.state_nodes[state_machine.STATES.JUMPING] = self
 
-func enter_state(bouncing_from_drilling) -> void:
+func enter_state(bounce_object_position) -> void:
 	initial_position = player.position
-	if is_instance_valid(bouncing_from_drilling):
-		bouncing = bouncing_from_drilling
+	if bounce_object_position:
+		bouncing_from_position = bounce_object_position
 
 func physics_update(_delta: float) -> void:
 	if player.is_on_ceiling() or (player.position.y <= 
@@ -20,8 +21,10 @@ func physics_update(_delta: float) -> void:
 		state_machine.change_to_state(
 			state_machine.STATES.FALLING)
 
-	_jump()
-
-func _jump() -> void:
-	if not bouncing:
+	if bouncing_from_position: # Rebote
+		player.velocity = (
+			player.global_position - bouncing_from_position
+			).normalized() * BOUNCE_FORCE
+		bouncing_from_position = Vector2()
+	else: # Salto normal
 		player.velocity.y = JUMP_ACCELERATION

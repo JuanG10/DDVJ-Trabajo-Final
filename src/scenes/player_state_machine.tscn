@@ -19,6 +19,9 @@ script = ExtResource("3_qypkn")
 [node name="falling" type="Node" parent="."]
 script = ExtResource("4_i82lc")
 
+[node name="floating_time_timer" type="Timer" parent="falling"]
+one_shot = true
+
 [node name="running" type="Node" parent="."]
 script = ExtResource("5_o4nhl")
 

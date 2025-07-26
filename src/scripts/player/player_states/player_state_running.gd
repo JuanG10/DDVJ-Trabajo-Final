@@ -20,10 +20,13 @@ func physics_update(_delta: float) -> void:
 		elif abs(player.velocity.x) > 0:
 			# Si se está moviendo, frenar
 			player.velocity.x = move_toward(
-				player.velocity.x, 0, player.velocity.x)
+				player.velocity.x, 0, ACCELERATION)
 	else:
-		player.velocity.x += ACCELERATION * direction
+		_move_player(direction)
 
+func _move_player(direction: float) -> void:
+	player.velocity.x += ACCELERATION * direction
+	player.player_sprite.flip_h = direction <= 0
 	_limit_speed(direction)
 
 func _limit_speed(direction: float) -> void:
