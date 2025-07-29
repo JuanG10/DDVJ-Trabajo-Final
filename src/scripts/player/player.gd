@@ -1,21 +1,18 @@
 class_name Player extends CharacterBody2D
 
-@onready var player_state_machine : StateMachine = $player_state_machine
-@onready var drill: Drill = $drill
-
-@onready var player_sprite: Sprite2D = $player_sprite:
+@onready var player_state_machine := $player_state_machine
+@onready var drill := $drill
+@onready var player_camera: Camera2D = $player_camera
+@onready var player_sprite := $player_sprite:
 	get: return player_sprite
 
-@onready var debug_label: Label = $Debug_label
+@onready var debug_label := $Debug_label
 
 func _ready() -> void:
 	drill.set_up_drill(player_state_machine)
 
 func _physics_process(delta: float) -> void:
 	debug_label.text = player_state_machine.current_state.name # Debug
-	drill.handle_drill() # Mal implementado; Se ejecuta muchas veces
-	if not Input.is_action_pressed("shift"):
-		# Condicional temporal/debug;
-		# El jugador debe mantener movimiento al presionar shift
-		player_state_machine.current_state.physics_update(delta)
-		move_and_slide()
+	drill.handle_drill()
+	player_state_machine.current_state.physics_update(delta)
+	move_and_slide()

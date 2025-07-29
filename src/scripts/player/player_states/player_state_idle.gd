@@ -13,5 +13,5 @@ func physics_update(_delta: float) -> void:
 		state_machine.change_to_state(state_machine.STATES.FALLING)
 	elif Input.is_action_just_pressed("jump"):
 		state_machine.change_to_state(state_machine.STATES.JUMPING)
-	elif abs(direction) != 0:
+	elif direction != 0:
 		state_machine.change_to_state(state_machine.STATES.RUNNING)
