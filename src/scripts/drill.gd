@@ -15,24 +15,22 @@ func set_up_drill(new_player_state_machine: StateMachine) -> void:
 
 func _physics_process(_delta: float) -> void:
 	var input_dir = Input.get_vector("left", "right", "up", "down")
-	if not (is_drilling_forward and is_collisioning):
+	if not is_collisioning or not (
+		is_drilling_forward or is_drilling_backward):
 		rotation = input_dir.angle()
 
 func handle_drill() -> void:
 	if Input.is_action_just_pressed("drill_forward") and !is_drilling_backward:
 		_start_drill_forward()
-
 	if Input.is_action_just_pressed("drill_backward") and !is_drilling_forward:
 		_start_drill_backward()
 
-	if is_drilling_forward and is_collisioning:
-		drill_particles.emitting = true
-		print("Before DRILLING")
+	if (is_drilling_forward or is_drilling_backward) and is_collisioning:
 		player_state_machine.change_to_state(
 			player_state_machine.STATES.DRILLING,
 			self.collisioned_area_position)
 
-	if Input.is_action_just_released("drill_forward") or Input.is_action_just_released("drill_backward"):
+	if _check_drill_input():
 		_stop_drill()
 
 func _start_drill_forward() -> void:
@@ -42,6 +40,17 @@ func _start_drill_forward() -> void:
 func _start_drill_backward() -> void:
 	is_drilling_backward = true
 	animation.play_backwards("default")
+
+func _check_drill_input() -> bool:
+	# Devuelve true si se suelta uno de los dos "drill_"
+	# o si uno ya esta presionado y se presiona el otro al mismo tiempo
+	return Input.is_action_just_released("drill_forward"
+	) or Input.is_action_just_released("drill_backward"
+	) or bounce_from_drilling()
+
+func bounce_from_drilling() -> bool:
+	return Input.is_action_pressed("drill_backward"
+	) and Input.is_action_pressed("drill_forward")
 
 func _stop_drill() -> void:
 	is_drilling_forward = false
