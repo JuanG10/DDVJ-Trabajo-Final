@@ -15,14 +15,16 @@ func enter_state(new_collision_position) -> void:
 	player.velocity = Vector2()
 
 func physics_update(_delta: float) -> void:
-	var drilling: bool = drill.is_drilling_forward or drill.is_drilling_backward
-	_effects(drilling)
+	_effects(drill.drilling_against_object())
 
-	if drill.bounce_from_drilling():
+	if drill.is_drilling_backward and drill.is_collisioning:
 		state_machine.change_to_state(state_machine.STATES.JUMPING,
 		collision_position)
-	elif drilling:
-		return
+	elif drill.bounce_from_drilling():
+		state_machine.change_to_state(state_machine.STATES.JUMPING,
+		collision_position)
+	elif drill.drilling_against_object():
+		pass
 	else:
 		state_machine.change_to_state(state_machine.STATES.IDLE)
 

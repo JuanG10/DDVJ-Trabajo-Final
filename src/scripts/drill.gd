@@ -25,7 +25,7 @@ func handle_drill() -> void:
 	if Input.is_action_just_pressed("drill_backward") and !is_drilling_forward:
 		_start_drill_backward()
 
-	if (is_drilling_forward or is_drilling_backward) and is_collisioning:
+	if drilling_against_object():
 		player_state_machine.change_to_state(
 			player_state_machine.STATES.DRILLING,
 			self.collisioned_area_position)
@@ -40,6 +40,9 @@ func _start_drill_forward() -> void:
 func _start_drill_backward() -> void:
 	is_drilling_backward = true
 	animation.play_backwards("default")
+
+func drilling_against_object() -> bool:
+	return is_drilling_forward and is_collisioning
 
 func _check_drill_input() -> bool:
 	# Devuelve true si se suelta uno de los dos "drill_"
