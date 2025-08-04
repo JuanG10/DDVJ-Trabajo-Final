@@ -1,8 +1,8 @@
 class_name Player extends CharacterBody2D
 
-@onready var player_state_machine := $player_state_machine
-@onready var drill := $drill
-@onready var player_camera: Camera2D = $player_camera
+@onready var player_state_machine: StateMachine = $player_state_machine
+@onready var drill: Drill = $drill
+@onready var player_camera := $player_camera
 @onready var player_sprite := $player_sprite:
 	get: return player_sprite
 

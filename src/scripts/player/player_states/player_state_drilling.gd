@@ -17,7 +17,7 @@ func enter_state(new_collision_position) -> void:
 func physics_update(_delta: float) -> void:
 	_effects(drill.drilling_against_object())
 
-	if drill.is_drilling_backward and drill.is_collisioning:
+	if drill.is_drilling_backward:
 		state_machine.change_to_state(state_machine.STATES.JUMPING,
 		collision_position)
 	elif drill.bounce_from_drilling():

@@ -10,6 +10,10 @@ var is_drilling_forward := false
 var is_drilling_backward := false
 var is_collisioning := false
 
+@onready var mouse_debug_icon: Sprite2D = $mouse_debug_icon #
+@onready var left_clic_pressed: Polygon2D = $mouse_debug_icon/left_click_pressed # Debug
+@onready var right_clic_pressed: Polygon2D = $mouse_debug_icon/right_click_pressed #
+
 func set_up_drill(new_player_state_machine: StateMachine) -> void:
 	player_state_machine = new_player_state_machine
 
@@ -36,13 +40,18 @@ func handle_drill() -> void:
 func _start_drill_forward() -> void:
 	is_drilling_forward = true
 	animation.play("default")
+	mouse_debug_icon.show()
+	left_clic_pressed.show()
 
 func _start_drill_backward() -> void:
 	is_drilling_backward = true
 	animation.play_backwards("default")
+	mouse_debug_icon.show()
+	right_clic_pressed.show()
 
 func drilling_against_object() -> bool:
-	return is_drilling_forward and is_collisioning
+	return (is_drilling_forward and is_collisioning
+	) or (is_drilling_backward and is_collisioning)
 
 func _check_drill_input() -> bool:
 	# Devuelve true si se suelta uno de los dos "drill_"
@@ -59,6 +68,9 @@ func _stop_drill() -> void:
 	is_drilling_forward = false
 	is_drilling_backward = false
 	animation.stop()
+	mouse_debug_icon.hide()
+	left_clic_pressed.hide()
+	right_clic_pressed.hide()
 
 func _on_drill_area_entered(area: Area2D) -> void:
 	collisioned_area_position = area.global_position

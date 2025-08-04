@@ -22,9 +22,8 @@ func physics_update(_delta: float) -> void:
 			state_machine.STATES.FALLING)
 
 	if bouncing_from_position: # Rebote
-		player.velocity = (
-			player.global_position - bouncing_from_position
-			).normalized() * BOUNCE_FORCE
+		player.velocity = bouncing_from_position.direction_to(
+			player.global_position) * BOUNCE_FORCE
 		bouncing_from_position = Vector2()
 	else: # Salto normal
 		player.velocity.y = JUMP_ACCELERATION
