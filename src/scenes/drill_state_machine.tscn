@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhop5j5cp725u"]
+
+[ext_resource type="Script" uid="uid://jkd4d1wk3ves" path="res://src/scripts/drill/drill_state_machine.gd" id="1_3lhtg"]
+[ext_resource type="Script" uid="uid://c8ocucfsif6ol" path="res://src/scripts/drill/drill_states/drill_state_forward.gd" id="2_jnltb"]
+[ext_resource type="Script" uid="uid://6n1p2m0crb20" path="res://src/scripts/drill/drill_states/drill_state_backward.gd" id="3_l4vcr"]
+[ext_resource type="Script" uid="uid://clp70bxogyd7l" path="res://src/scripts/drill/drill_states/drill_state_idle.gd" id="4_l4vcr"]
+
+[node name="drill_state_machine" type="Node"]
+script = ExtResource("1_3lhtg")
+
+[node name="forward" type="Node" parent="."]
+script = ExtResource("2_jnltb")
+
+[node name="backward" type="Node" parent="."]
+script = ExtResource("3_l4vcr")
+
+[node name="idle" type="Node" parent="."]
+script = ExtResource("4_l4vcr")

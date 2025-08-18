@@ -7,8 +7,8 @@ extends PlayerState
 func _add_state_to_machine() -> void:
 	state_machine.state_nodes[state_machine.STATES.FALLING] = self
 
-func enter_state(_param) -> void:
-	timer.start(FLOATING_TIME)
+func enter_state(bouncing) -> void:
+	if not bouncing: timer.start(FLOATING_TIME)
 
 func physics_update(_delta: float) -> void:
 	_check_landing()

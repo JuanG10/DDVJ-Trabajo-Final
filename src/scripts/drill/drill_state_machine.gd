@@ -1,21 +1,19 @@
-class_name PlayerStateMachine extends Node
+class_name DrillStateMachine extends Node
 
-@onready var player: Player = self.owner
+@onready var drill: Drill = $"../drill"
 
 enum STATES {
 	IDLE,
-	JUMPING,
-	FALLING,
-	RUNNING,
-	DRILLING
+	FORWARD,
+	BACKWARD
 }
 
-var state_nodes: Dictionary[STATES, PlayerState]
-var current_state: PlayerState:
+var state_nodes: Dictionary[STATES, DrillState]
+var current_state: DrillState:
 	get: return current_state
 
 func _ready() -> void:
-	for state: PlayerState in get_children():
+	for state: DrillState in get_children():
 		state.initialize_state(self)
 	current_state = state_nodes[STATES.IDLE]
 

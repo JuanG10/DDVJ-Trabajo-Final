@@ -1,11 +1,13 @@
-class_name PlayerState extends Node
+class_name DrillState extends Node
 
-var state_machine: PlayerStateMachine
-var player: Player
+var state_machine: DrillStateMachine
+var drill: Drill
 
-func initialize_state(new_state_machine: PlayerStateMachine) -> void:
+signal drilling
+
+func initialize_state(new_state_machine: DrillStateMachine) -> void:
 	state_machine = new_state_machine
-	player = state_machine.player
+	drill = state_machine.drill
 	_add_state_to_machine()
 
 func _add_state_to_machine() -> void:
@@ -13,7 +15,7 @@ func _add_state_to_machine() -> void:
 	pass
 
 func enter_state(_param: Variant) -> void:
-	pass
+	drilling.emit()
 
 func physics_update(_delta: float) -> void:
 	pass

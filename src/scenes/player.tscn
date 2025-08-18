@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://da71cud5ceror"]
+[gd_scene load_steps=6 format=3 uid="uid://da71cud5ceror"]
 
 [ext_resource type="Script" uid="uid://b600hfasml02x" path="res://src/scripts/player/player.gd" id="1_cusn3"]
 [ext_resource type="Texture2D" uid="uid://0xq2my8tutpe" path="res://art/character_layers/Character_no_bg.png" id="2_l2v1k"]
 [ext_resource type="PackedScene" uid="uid://cknc2uwaj8x3l" path="res://src/scenes/drill.tscn" id="2_v4rts"]
 [ext_resource type="PackedScene" uid="uid://cirkfc7pawa1e" path="res://src/scenes/player_state_machine.tscn" id="3_hwyk6"]
+[ext_resource type="PackedScene" uid="uid://dhop5j5cp725u" path="res://src/scenes/drill_state_machine.tscn" id="5_ya6j6"]
 
 [node name="player" type="CharacterBody2D"]
 script = ExtResource("1_cusn3")
@@ -24,6 +25,8 @@ zoom = Vector2(3, 3)
 [node name="drill" parent="." instance=ExtResource("2_v4rts")]
 
 [node name="player_state_machine" parent="." instance=ExtResource("3_hwyk6")]
+
+[node name="drill_state_machine" parent="." instance=ExtResource("5_ya6j6")]
 
 [node name="Debug_label" type="Label" parent="."]
 z_index = 10
